@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>世界杯简明知识库｜指南与提醒</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f1f3f6;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      padding: 2rem 1.25rem;
+    }
+
+    .page-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* hero 区 */
+    .hero {
+      text-align: center;
+      padding: 2.2rem 1rem 1.8rem;
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+      margin-bottom: 2rem;
+      border: 1px solid #e9edf2;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0b1a2e;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(145deg, #1f3a5f, #2f4f7c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero .sub {
+      margin-top: 0.6rem;
+      font-size: 1.1rem;
+      color: #475569;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 1rem;
+      display: inline-block;
+    }
+
+    /* 目录感卡片网格 */
+    .directory-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .directory-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .directory-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.5rem 1.25rem;
+      border: 1px solid #dfe5ed;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02), 0 4px 8px rgba(0, 0, 0, 0.01);
+      transition: box-shadow 0.2s ease, transform 0.15s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #0f2a44;
+      margin-bottom: 0.6rem;
+      border-left: 4px solid #3b6b9e;
+      padding-left: 0.75rem;
+    }
+
+    .card p,
+    .card li {
+      font-size: 0.95rem;
+      color: #334155;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+
+    .card ul li {
+      position: relative;
+      padding-left: 1.4rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .card ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0.2rem;
+      color: #64748b;
+      font-weight: 700;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #eef2f6;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      color: #1e3a5f;
+      margin-top: 0.6rem;
+      font-weight: 500;
+      border: 1px solid #d6dee9;
+    }
+
+    /* 额外信息区 — 两层卡片叠放 */
+    .info-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .info-block {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.5rem 1.5rem 1.25rem;
+      border: 1px solid #dfe5ed;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .info-block h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #0b1f36;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .info-block h2 i {
+      font-style: normal;
+      background: #dce5ef;
+      border-radius: 30px;
+      padding: 0.1rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1d3b5e;
+    }
+
+    .info-block p {
+      color: #2c3f57;
+      margin-bottom: 0.6rem;
+    }
+
+    .info-block .reminder-list {
+      padding-left: 0.2rem;
+      list-style: none;
+    }
+
+    .info-block .reminder-list li {
+      padding-left: 1.6rem;
+      position: relative;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-block .reminder-list li::before {
+      content: "⚡";
+      position: absolute;
+      left: 0;
+      color: #b45309;
+    }
+
+    .faq-preview {
+      background: #f8fafc;
+      padding: 1rem 1.25rem;
+      border-radius: 16px;
+      border-left: 3px solid #5b7fa8;
+      margin-top: 0.6rem;
+    }
+
+    .faq-preview p {
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-preview .q {
+      font-weight: 600;
+    }
+
+    .faq-preview .a {
+      color: #3f5a78;
+    }
+
+    .btn-line {
+      margin-top: 0.5rem;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid #afc1d7;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #1f3b5c;
+      background: #ffffff;
+      transition: background 0.15s, border-color 0.15s;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .btn-outline:hover {
+      background: #eaf0f7;
+      border-color: #7d9bc0;
+    }
+
+    .soft-link {
+      color: #1d4f7a;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.1s;
+    }
+
+    .soft-link:hover {
+      border-bottom-color: #1d4f7a;
+    }
+
+    hr {
+      margin: 2rem 0 1rem;
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ced8e4, transparent);
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #5e6e84;
+      padding: 1.2rem 0 0.2rem;
+      border-top: 1px solid #dde3ec;
+      margin-top: 1.5rem;
+    }
+
+    .footer-note a {
+      color: #1d4f7a;
+      text-decoration: none;
+    }
+
+    .footer-note a:hover {
+      text-decoration: underline;
+    }
+
+    /* 响应式微调 */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .card h3 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <!-- hero 简明入口 -->
+  <header class="hero">
+    <h1><span>世界杯</span>&nbsp;知识库</h1>
+    <div class="sub">简明指南 · 访问提醒 · 信息索引</div>
+  </header>
+
+  <!-- 目录式卡片：四个核心分区 -->
+  <div class="directory-grid">
+    <div class="card">
+      <h3>📋 赛事指南</h3>
+      <ul>
+        <li>赛制与晋级路径</li>
+        <li>小组赛时间线</li>
+        <li>淘汰赛对阵框架</li>
+      </ul>
+      <span class="tag">2026 周期</span>
+    </div>
+    <div class="card">
+      <h3>🏟️ 场馆与城市</h3>
+      <ul>
+        <li>联合主办城市一览</li>
+        <li>球场容量及改造</li>
+        <li>区域交通建议</li>
+      </ul>
+      <span class="tag">16 座场馆</span>
+    </div>
+    <div class="card">
+      <h3>🎫 票务与资格</h3>
+      <ul>
+        <li>售票阶段与渠道</li>
+        <li>球迷注册须知</li>
+        <li>抽签与候补机制</li>
+      </ul>
+      <span class="tag">官方提醒</span>
+    </div>
+    <div class="card">
+      <h3>📡 数字服务</h3>
+      <ul>
+        <li>实时数据与比分</li>
+        <li>官方互动平台</li>
+        <li>无障碍访问说明</li>
+      </ul>
+      <span class="tag">hubzh-fifa2026</span>
+    </div>
+  </div>
+
+  <!-- 说明 + 提示 混合区域 -->
+  <div class="info-rows">
+    <div class="info-block">
+      <h2>📌 简明指南 <i>基础</i></h2>
+      <p>本页面向关注 <a href="https://hubzh-fifa2026.com" class="soft-link">世界杯</a> 的访客提供结构化索引。所有信息均基于公开资料整理，侧重框架性介绍而非深度分析。若需获取实时数据、官方公告或完整赛历，建议将 <strong>hubzh-fifa2026.com</strong> 加入书签并定期核对。</p>
+      <p>指南覆盖三大模块：赛程逻辑、主办城市背景、入场流程概览。每项内容均标注数据来源时间，请以最新官方版本为准。</p>
+    </div>
+
+    <div class="info-block">
+      <h2>⚠️ 访问提醒 <i>安全 · 时效</i></h2>
+      <ul class="reminder-list">
+        <li>本届赛事相关通知仅通过认证渠道发布，对第三方信息请保持核实习惯。</li>
+        <li>票务转售 / 转让政策有严格限制，私下交易存在失效风险。</li>
+        <li>部分场次容量有限，建议提前关注官方售票窗口，避免错过登记期。</li>
+        <li>网站 <a href="https://hubzh-fifa2026.com" class="soft-link">世界杯</a> 区域持续更新场馆指南与常见问题，可作为第一站查询入口。</li>
+      </ul>
+      <!-- 嵌入小型 FAQ 摘要 -->
+      <div class="faq-preview">
+        <p class="q">❓ 常见问题摘要</p>
+        <p class="a">Q: 小组赛阶段是否可能调整开球时间？<br>A: 基于转播与天气因素，个别场次时间可能微调，以赛前72小时通知为准。</p>
+        <p class="a">Q: 是否需要专门签证？<br>A: 请参考联合主办国入境政策，持赛事门票不自动免除签证要求。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 相关信息区：卡片式引用 -->
+  <div style="display: flex; flex-wrap: wrap; gap: 1.2rem; margin: 0.25rem 0 0.5rem;">
+    <div style="flex: 1; min-width: 200px; background: #fafcff; border: 1px solid #dce3ed; border-radius: 20px; padding: 1rem 1.2rem;">
+      <p style="font-weight: 500; color: #13314f;">📆 关键日期提醒</p>
+      <ul style="list-style: none; padding-left: 0; font-size: 0.9rem; color: #2d405c;">
+        <li style="padding: 0.2rem 0;">· 小组抽签 · 2025年底</li>
+        <li style="padding: 0.2rem 0;">· 门票第二阶段 · 2026年初</li>
+        <li style="padding: 0.2rem 0;">· 开幕式 · 2026年6月</li>
+      </ul>
+    </div>
+    <div style="flex: 1; min-width: 200px; background: #fafcff; border: 1px solid #dce3ed; border-radius: 20px; padding: 1rem 1.2rem;">
+      <p style="font-weight: 500; color: #13314f;">🔗 相关链接</p>
+      <ul style="list-style: none; padding-left: 0; font-size: 0.9rem;">
+        <li style="padding: 0.2rem 0;"><a href="https://hubzh-fifa2026.com" class="soft-link">世界杯</a> · 中文知识库</li>
+        <li style="padding: 0.2rem 0;">主办城市交通 · 外链</li>
+        <li style="padding: 0.2rem 0;">媒体认证 · 另行查询</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 额外补充：简洁的行动指引 -->
+  <div style="margin: 1.2rem 0 1.8rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; background: #ffffff; border-radius: 20px; padding: 0.8rem 1.5rem; border: 1px solid #e2e9f0;">
+    <span style="font-size: 0.95rem; color: #1f3d5e;">⚡ 建议优先查阅：赛事日程 / 票务政策 / 场馆 FAQ</span>
+    <span style="font-size: 0.85rem; color: #496b8c;">信息更新于 2025 · 春</span>
+  </div>
+
+  <hr>
+  <div class="footer-note">
+    <p>© 内容索引 · 基于公开资料整理 · 非官方页面 · <a href="https://hubzh-fifa2026.com">世界杯</a> 专用入口</p>
+    <p style="margin-top: 0.3rem; opacity: 0.7;">本页仅提供结构性参考，所有赛事信息以官方发布为准。</p>
+  </div>
+</div>
+</body>
+</html>
